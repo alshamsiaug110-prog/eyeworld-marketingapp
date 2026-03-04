@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "siteName": "Orgánica",
+    "whatsapp": "201067776664",
+    "deliveryFeeEGP": 75,
+    "ramadanSectionVisible": true
+  },
+  "products": [
+    {
+      "id": "prod_1772658761976",
+      "active": true,
+      "nameEn": "Rabbet",
+      "nameAr": "Arnab",
+      "section": "whole_poultry",
+      "pricingType": "fixed",
+      "fixedPrice": 230,
+      "fixedUnit": "kg",
+      "fixedUnitAr": "كجم"
+    }
+  ],
+  "sections": [
+    {
+      "id": "whole_poultry",
+      "labelEn": "🐔 Whole Poultry",
+      "labelAr": "🐔 دواجن كاملة"
+    },
+    {
+      "id": "cuts",
+      "labelEn": "🍗 Cuts",
+      "labelAr": "🍗 قطعيات"
+    },
+    {
+      "id": "processed",
+      "labelEn": "⚡ Processed",
+      "labelAr": "⚡ مصنعات"
+    },
+    {
+      "id": "offal",
+      "labelEn": "🫀 Offal",
+      "labelAr": "🫀 كبدة"
+    }
+  ],
+  "ramadanBundles": []
+}
