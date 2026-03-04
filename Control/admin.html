@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Orgánica Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --g: #4A6741;
+      --gl: #7A9A7E;
+      --a: #D47A2C;
+      --al: #E89E5F;
+      --bg: #f4f6f3;
+      --white: #fff;
+      --text: #1a1a1a;
+      --tl: #666;
+      --red: #e53935;
+      --red-l: #ffebee;
+      --green: #2e7d32;
+      --green-l: #e8f5e9;
+      --shadow: 0 4px 20px rgba(0, 0, 0, .08)
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh
+    }
+
+    /* LOGIN */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #2d4a2a, #4A6741)
+    }
+
+    .login-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+      text-align: center
+    }
+
+    .login-card h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--g);
+      margin-bottom: 6px
+    }
+
+    .login-card p {
+      color: var(--tl);
+      font-size: .9rem;
+      margin-bottom: 32px
+    }
+
+    .login-field {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: .95rem;
+      margin-bottom: 14px;
+      transition: border-color .2s
+    }
+
+    .login-field:focus {
+      outline: none;
+      border-color: var(--g)
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--g);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .login-btn:hover {
+      background: #3a5432;
+      transform: translateY(-1px)
+    }
+
+    .login-error {
+      background: var(--red-l);
+      color: var(--red);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: .85rem;
+      margin-top: 10px;
+      display: none
+    }
+
+    /* LAYOUT */
+    #adminApp {
+      display: none;
+      min-height: 100vh
+    }
+
+    .topbar {
+      background: var(--g);
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .2)
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .topbar h2 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: .5px
+    }
+
+    .topbar-badge {
+      background: rgba(255, 255, 255, .2);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: .75rem
+    }
+
+    .logout-btn {
+      background: rgba(255, 255, 255, .15);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, .3);
+      padding: 7px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: .8rem;
+      font-weight: 600;
+      transition: all .2s
+    }
+
+    .logout-btn:hover {
+      background: rgba(255, 255, 255, .25)
+    }
+
+    .admin-body {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: calc(100vh - 52px)
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      background: var(--white);
+      border-right: 1px solid #e8ede8;
+      padding: 24px 0
+    }
+
+    .sidebar-section {
+      margin-bottom: 8px
+    }
+
+    .sidebar-label {
+      font-size: .65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--tl);
+      padding: 0 20px;
+      margin-bottom: 6px
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 20px;
+      cursor: pointer;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: all .2s;
+      border-left: 3px solid transparent
+    }
+
+    .nav-item:hover {
+      background: #f0f5f0;
+      color: var(--g)
+    }
+
+    .nav-item.active {
+      background: #e8f0e8;
+      color: var(--g);
+      border-left-color: var(--g)
+    }
+
+    .nav-item i {
+      width: 18px;
+      text-align: center;
+      font-size: .9rem
+    }
+
+    /* MAIN PANEL */
+    .main-panel {
+      padding: 32px;
+      overflow-y: auto
+    }
+
+    .panel-view {
+      display: none
+    }
+
+    .panel-view.active {
+      display: block
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: gap;
+      gap: 12px
+    }
+
+    .panel-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text)
+    }
+
+    .panel-subtitle {
+      font-size: .85rem;
+      color: var(--tl);
+      margin-top: 3px
+    }
+
+    /* BUTTONS */
+    .btn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px
+    }
+
+    .btn-primary {
+      background: var(--g);
+      color: #fff
+    }
+
+    .btn-primary:hover {
+      background: #3a5432;
+      transform: translateY(-1px)
+    }
+
+    .btn-accent {
+      background: var(--a);
+      color: #fff
+    }
+
+    .btn-accent:hover {
+      background: var(--al)
+    }
+
+    .btn-danger {
+      background: var(--red);
+      color: #fff
+    }
+
+    .btn-danger:hover {
+      background: #c62828
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--g);
+      border: 2px solid var(--g)
+    }
+
+    .btn-ghost:hover {
+      background: #e8f0e8
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: .78rem;
+      border-radius: 8px
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px
+    }
+
+    /* PRODUCT TABLE */
+    .product-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto auto auto;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0f0f0
+    }
+
+    .product-row:last-child {
+      border-bottom: none
+    }
+
+    .product-row-name {
+      font-weight: 700;
+      font-size: .9rem
+    }
+
+    .product-row-name small {
+      display: block;
+      color: var(--tl);
+      font-size: .78rem;
+      font-weight: 400
+    }
+
+    .product-row-price {
+      font-weight: 700;
+      color: var(--a);
+      font-size: .9rem
+    }
+
+    .product-row-type {
+      font-size: .75rem;
+      background: #eef4ee;
+      color: var(--g);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+      white-space: nowrap
+    }
+
+    .section-badge {
+      font-size: .65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--tl);
+      background: #f5f5f5;
+      padding: 4px 10px;
+      border-radius: 20px
+    }
+
+    /* TOGGLE */
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .toggle {
+      position: relative;
+      width: 40px;
+      height: 22px
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #ccc;
+      border-radius: 22px;
+      transition: .3s
+    }
+
+    .slider:before {
+      content: '';
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: .3s
+    }
+
+    input:checked+.slider {
+      background: var(--g)
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(18px)
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, .5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center
+    }
+
+    .modal-overlay.open {
+      display: flex
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 560px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .3)
+    }
+
+    .modal h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--g)
+    }
+
+    .form-row {
+      margin-bottom: 16px
+    }
+
+    .form-row label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--tl);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: .5px
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: .9rem;
+      transition: border-color .2s
+    }
+
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      outline: none;
+      border-color: var(--g)
+    }
+
+    .form-row textarea {
+      resize: vertical;
+      min-height: 80px
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #eee
+    }
+
+    /* PUBLISH BAR */
+    .publish-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 2px solid #e8ede8;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 150;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, .08);
+      transform: translateY(100%);
+      transition: transform .3s
+    }
+
+    .publish-bar.visible {
+      transform: translateY(0)
+    }
+
+    .publish-info {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .publish-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--a);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .4
+      }
+    }
+
+    .publish-text {
+      font-weight: 700;
+      font-size: .9rem
+    }
+
+    .publish-sub {
+      font-size: .78rem;
+      color: var(--tl)
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--green);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: .9rem;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateX(120%);
+      transition: transform .3s;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .2)
+    }
+
+    .toast.error {
+      background: var(--red)
+    }
+
+    .toast.show {
+      transform: translateX(0)
+    }
+
+    /* STATUS BADGE */
+    .status-active {
+      color: var(--green);
+      font-size: .8rem;
+      font-weight: 700
+    }
+
+    .status-inactive {
+      color: var(--red);
+      font-size: .8rem;
+      font-weight: 700
+    }
+
+    /* BUNDLE CARD */
+    .bundle-admin-card {
+      background: var(--white);
+      border: 2px solid #e8ede8;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 14px
+    }
+
+    .bundle-admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px
+    }
+
+    .bundle-admin-name {
+      font-weight: 800;
+      font-size: 1rem
+    }
+
+    .bundle-admin-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--a)
+    }
+
+    .bundle-admin-desc {
+      font-size: .82rem;
+      color: var(--tl);
+      margin-bottom: 10px
+    }
+
+    /* STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px
+    }
+
+    .stat-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      text-align: center
+    }
+
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--g)
+    }
+
+    .stat-label {
+      font-size: .78rem;
+      color: var(--tl);
+      margin-top: 4px
+    }
+
+    /* SECTION HEADER IN LIST */
+    .section-header-row {
+      background: #f8faf8;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin: 12px 0 4px;
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--g)
+    }
+
+    @media(max-width:768px) {
+      .admin-body {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        display: none
+      }
+
+      .product-row {
+        grid-template-columns: 1fr auto auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <h1>🌿 Orgánica</h1>
+      <p>Admin Panel — enter your GitHub PAT to continue</p>
+      <input class="login-field" type="text" id="patInput" placeholder="GitHub Personal Access Token" autocomplete="off"
+        spellcheck="false">
+      <div style="font-size:.75rem;color:var(--tl);margin-bottom:14px;text-align:left;">
+        Repo: <strong>alshamsiaug110-prog / eyeworld-marketingapp</strong> &nbsp;·&nbsp; Branch: <strong>main</strong>
+      </div>
+      <button class="login-btn" onclick="doLogin()">🔐 Connect & Load Data</button>
+      <div class="login-error" id="loginError"></div>
+    </div>
+  </div>
+
+  <!-- ADMIN APP -->
+  <div id="adminApp">
+    <div class="topbar">
+      <div class="topbar-left">
+        <span>🌿</span>
+        <h2>Orgánica Admin</h2>
+        <span class="topbar-badge" id="repoLabel">alshamsiaug110-prog/eyeworld-marketingapp</span>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">↩ Logout</button>
+    </div>
+    <div class="admin-body">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-label">Overview</div>
+          <div class="nav-item active" onclick="showPanel('dashboard')" id="nav-dashboard">
+            <i>📊</i> Dashboard
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-label">Catalog</div>
+          <div class="nav-item" onclick="showPanel('products')" id="nav-products">
+            <i>🐔</i> Products
+          </div>
+          <div class="nav-item" onclick="showPanel('bundles')" id="nav-bundles">
+            <i>🌙</i> Ramadan Bundles
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-label">Publish</div>
+          <div class="nav-item" onclick="publishNow()" id="nav-publish">
+            <i>🚀</i> Publish Changes
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN PANEL -->
+      <div class="main-panel" style="padding-bottom:100px">
+
+        <!-- DASHBOARD -->
+        <div class="panel-view active" id="panel-dashboard">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Dashboard</div>
+              <div class="panel-subtitle">Overview of your Orgánica store</div>
+            </div>
+          </div>
+          <div class="stats-grid" id="statsGrid"></div>
+          <div class="card">
+            <h3 style="font-weight:800;margin-bottom:16px;font-size:1rem;">📋 Quick Actions</h3>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn btn-primary" onclick="showPanel('products');openAddProduct()"><i>+</i> Add New
+                Product</button>
+              <button class="btn btn-accent" onclick="showPanel('bundles')"><i>🌙</i> Edit Bundles</button>
+              <button class="btn btn-ghost" onclick="publishNow()"><i>🚀</i> Publish to Live Site</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3 style="font-weight:800;margin-bottom:4px;font-size:1rem;">ℹ️ How it works</h3>
+            <p style="font-size:.85rem;color:var(--tl);line-height:1.7;margin-top:8px;">
+              1. Add or edit products and bundles using the sidebar panels.<br>
+              2. When you're done, click <strong>Publish Changes</strong> — this saves <code>config.json</code> directly
+              to your GitHub repo.<br>
+              3. Your live site at <strong>alshamsiaug110-prog.github.io/eyeworld-marketingapp</strong> will update
+              within seconds.<br><br>
+              <strong>To add a new item like Rabbits:</strong> Go to Products → Add Product → fill in English name,
+              Arabic name, price type and price → Save → Publish.
+            </p>
+          </div>
+        </div>
+
+        <!-- PRODUCTS -->
+        <div class="panel-view" id="panel-products">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Products</div>
+              <div class="panel-subtitle">All items shown in the price list & calculator</div>
+            </div>
+            <button class="btn btn-primary" onclick="openAddProduct()"><span>+</span> Add Product</button>
+          </div>
+          <div class="card" id="productListContainer">
+            <div id="productList"></div>
+          </div>
+        </div>
+
+        <!-- BUNDLES -->
+        <div class="panel-view" id="panel-bundles">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Ramadan Bundles</div>
+              <div class="panel-subtitle">Toggle visibility and edit bundle details</div>
+            </div>
+          </div>
+          <div id="bundleList"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- PUBLISH BAR -->
+  <div class="publish-bar" id="publishBar">
+    <div class="publish-info">
+      <div class="publish-dot"></div>
+      <div>
+        <div class="publish-text">You have unpublished changes</div>
+        <div class="publish-sub">Click Publish to update your live site</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost btn-sm" onclick="discardChanges()">Discard</button>
+      <button class="btn btn-accent" onclick="publishNow()" id="publishBtn">🚀 Publish to GitHub</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal">
+      <h3 id="modalTitle">Add New Product</h3>
+      <div class="form-row">
+        <label>English Name *</label>
+        <input type="text" id="pNameEn" placeholder="e.g. Rabbit">
+      </div>
+      <div class="form-row">
+        <label>Arabic Name * (الاسم بالعربي)</label>
+        <input type="text" id="pNameAr" placeholder="e.g. أرنب" dir="rtl">
+      </div>
+      <div class="form-row">
+        <label>Section</label>
+        <select id="pSection">
+          <option value="whole_poultry">🐔 Whole Poultry</option>
+          <option value="cuts">🍗 Cuts</option>
+          <option value="processed">⚡ Processed</option>
+          <option value="offal">🫀 Offal</option>
+          <option value="other">📦 Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Pricing Type</label>
+        <select id="pPricingType" onchange="togglePriceFields()">
+          <option value="variable_weight">Variable Weight (per kg, customer picks weight)</option>
+          <option value="fixed">Fixed Price (per kg / per pair / per piece)</option>
+        </select>
+      </div>
+      <!-- Variable weight fields -->
+      <div id="varWeightFields">
+        <div class="form-row">
+          <label>Price per kg (EGP)</label>
+          <input type="number" id="pPricePerKg" placeholder="190">
+        </div>
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label>Default Weight (grams)</label>
+            <input type="number" id="pDefaultW" placeholder="1200" step="100">
+          </div>
+          <div class="form-row">
+            <label>Max Weight (grams)</label>
+            <input type="number" id="pMaxW" placeholder="2500" step="100">
+          </div>
+        </div>
+      </div>
+      <!-- Fixed price fields -->
+      <div id="fixedFields" style="display:none">
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label>Fixed Price (EGP)</label>
+            <input type="number" id="pFixedPrice" placeholder="275">
+          </div>
+          <div class="form-row">
+            <label>Unit (English)</label>
+            <input type="text" id="pFixedUnit" placeholder="kg / pair / piece">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Unit (Arabic)</label>
+          <input type="text" id="pFixedUnitAr" placeholder="كجم / زوج / قطعة" dir="rtl">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeProductModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveProduct()">💾 Save Product</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUNDLE MODAL -->
+  <div class="modal-overlay" id="bundleModal">
+    <div class="modal">
+      <h3 id="bundleModalTitle">Edit Bundle</h3>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Bundle Name (English)</label>
+          <input type="text" id="bNameEn">
+        </div>
+        <div class="form-row">
+          <label>Bundle Name (Arabic)</label>
+          <input type="text" id="bNameAr" dir="rtl">
+        </div>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label>Bundle Price (EGP)</label>
+          <input type="number" id="bPrice">
+        </div>
+        <div class="form-row">
+          <label>Original Price (for strikethrough)</label>
+          <input type="text" id="bOriginalPriceEn" placeholder="e.g. 1,190">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Savings Text (English)</label>
+        <input type="text" id="bSaveEn" placeholder="Save 100 EGP · ~8%">
+      </div>
+      <div class="form-row">
+        <label>Savings Text (Arabic)</label>
+        <input type="text" id="bSaveAr" dir="rtl" placeholder="وفّر ١٠٠ ج · ٨٪">
+      </div>
+      <div class="form-row">
+        <label>Contents (English) — one item per line</label>
+        <textarea id="bContentsEn" rows="4"></textarea>
+      </div>
+      <div class="form-row">
+        <label>Contents (Arabic) — one item per line</label>
+        <textarea id="bContentsAr" dir="rtl" rows="4"></textarea>
+      </div>
+      <div class="form-row">
+        <label>Short Description (English — shown in order form dropdown)</label>
+        <input type="text" id="bDescEn">
+      </div>
+      <div class="form-row">
+        <label>Short Description (Arabic)</label>
+        <input type="text" id="bDescAr" dir="rtl">
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeBundleModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveBundle()">💾 Save Bundle</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── CONFIG ─────────────────────────────────────────────────────────────────
+    const GITHUB_OWNER = 'alshamsiaug110-prog';
+    const GITHUB_REPO = 'eyeworld-marketingapp';
+    const GITHUB_BRANCH = 'main';
+    const CONFIG_PATH = 'config.json';
+
+    let PAT = '';
+    let configData = null;
+    let configSHA = '';
+    let isDirty = false;
+    let editingProductId = null;
+    let editingBundleId = null;
+
+    // ─── LOGIN ───────────────────────────────────────────────────────────────────
+    async function doLogin() {
+      const pat = document.getElementById('patInput').value.trim();
+      if (!pat) { showLoginError('Please enter your GitHub PAT.'); return; }
+      const btn = document.querySelector('.login-btn');
+      btn.textContent = 'Connecting…'; btn.disabled = true;
+      try {
+        const res = await ghGet(CONFIG_PATH, pat);
+        if (res.status === 404) {
+          // config.json doesn't exist yet — start fresh
+          PAT = pat;
+          configData = getDefaultConfig();
+          configSHA = '';
+          launchApp();
+        } else if (res.ok) {
+          const json = await res.json();
+          configSHA = json.sha;
+          configData = JSON.parse(atob(json.content.replace(/\n/g, '')));
+          PAT = pat;
+          launchApp();
+        } else if (res.status === 401) {
+          showLoginError('Invalid token — check your PAT and try again.');
+        } else {
+          showLoginError('Error ' + res.status + ' — could not connect to GitHub.');
+        }
+      } catch (e) {
+        showLoginError('Network error: ' + e.message);
+      }
+      btn.textContent = '🔐 Connect & Load Data'; btn.disabled = false;
+    }
+
+    function doLogout() {
+      PAT = ''; configData = null; configSHA = ''; isDirty = false;
+      document.getElementById('adminApp').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('patInput').value = '';
+    }
+
+    function showLoginError(msg) {
+      const el = document.getElementById('loginError');
+      el.textContent = msg; el.style.display = 'block';
+    }
+
+    function launchApp() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminApp').style.display = 'block';
+      renderAll();
+    }
+
+    // ─── GITHUB API ──────────────────────────────────────────────────────────────
+    function ghGet(path, token) {
+      return fetch('https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + path + '?ref=' + GITHUB_BRANCH, {
+        headers: { Authorization: 'token ' + (token || PAT), Accept: 'application/vnd.github.v3+json' }
+      });
+    }
+
+    async function publishNow() {
+      const btn = document.getElementById('publishBtn');
+      btn.textContent = '⏳ Publishing…'; btn.disabled = true;
+      document.getElementById('nav-publish').querySelector('i').textContent = '⏳';
+
+      const content = btoa(unescape(encodeURIComponent(JSON.stringify(configData, null, 2))));
+      const body = { message: 'Admin: update config.json', content, branch: GITHUB_BRANCH };
+      if (configSHA) body.sha = configSHA;
+
+      try {
+        const res = await fetch('https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
+          method: 'PUT',
+          headers: { Authorization: 'token ' + PAT, 'Content-Type': 'application/json', Accept: 'application/vnd.github.v3+json' },
+          body: JSON.stringify(body)
+        });
+        const json = await res.json();
+        if (res.ok) {
+          configSHA = json.content.sha;
+          isDirty = false;
+          document.getElementById('publishBar').classList.remove('visible');
+          showToast('✅ Published! Your live site will update in ~30 seconds.');
+        } else {
+          showToast('❌ Publish failed: ' + (json.message || res.status), true);
+        }
+      } catch (e) {
+        showToast('❌ Network error: ' + e.message, true);
+      }
+      btn.textContent = '🚀 Publish to GitHub'; btn.disabled = false;
+      document.getElementById('nav-publish').querySelector('i').textContent = '🚀';
+    }
+
+    function discardChanges() {
+      if (confirm('Discard all unsaved changes?')) { location.reload(); }
+    }
+
+    // ─── RENDER ALL ──────────────────────────────────────────────────────────────
+    function renderAll() {
+      renderStats();
+      renderProductList();
+      renderBundleList();
+    }
+
+    function markDirty() {
+      isDirty = true;
+      document.getElementById('publishBar').classList.add('visible');
+      renderStats();
+    }
+
+    // ─── DASHBOARD ───────────────────────────────────────────────────────────────
+    function renderStats() {
+      if (!configData) return;
+      const active = configData.products.filter(p => p.active).length;
+      const total = configData.products.length;
+      const bundles = configData.ramadanBundles.filter(b => b.active).length;
+      document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><div class="stat-num">${total}</div><div class="stat-label">Total Products</div></div>
+    <div class="stat-card"><div class="stat-num">${active}</div><div class="stat-label">Active Products</div></div>
+    <div class="stat-card"><div class="stat-num">${total - active}</div><div class="stat-label">Hidden Products</div></div>
+    <div class="stat-card"><div class="stat-num">${bundles}</div><div class="stat-label">Active Bundles</div></div>
+    <div class="stat-card" style="border:2px solid ${isDirty ? 'var(--a)' : '#e8ede8'}">
+      <div class="stat-num" style="color:${isDirty ? 'var(--a)' : 'var(--g)'}">${isDirty ? '●' : '✓'}</div>
+      <div class="stat-label">${isDirty ? 'Unpublished changes' : 'All published'}</div>
+    </div>
+  `;
+    }
+
+    // ─── PRODUCTS ────────────────────────────────────────────────────────────────
+    function renderProductList() {
+      if (!configData) return;
+      const sections = configData.sections || [];
+      let html = '';
+      sections.forEach(sec => {
+        const prods = configData.products.filter(p => p.section === sec.id);
+        if (!prods.length) return;
+        html += `<div class="section-header-row">${sec.labelEn}</div>`;
+        prods.forEach(p => {
+          const priceLabel = p.pricingType === 'variable_weight'
+            ? p.pricePerKg + ' EGP/kg (variable weight)'
+            : p.fixedPrice + ' EGP/' + (p.fixedUnit || 'kg');
+          html += `
+        <div class="product-row">
+          <div class="product-row-name">${p.nameEn}<small>${p.nameAr}</small></div>
+          <div class="product-row-price">${priceLabel}</div>
+          <div class="product-row-type">${p.pricingType === 'variable_weight' ? '⚖️ Variable' : '🏷 Fixed'}</div>
+          <label class="toggle" title="${p.active ? 'Visible' : 'Hidden'}">
+            <input type="checkbox" ${p.active ? 'checked' : ''} onchange="toggleProduct('${p.id}', this.checked)">
+            <span class="slider"></span>
+          </label>
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-ghost btn-sm" onclick="openEditProduct('${p.id}')">✏️</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')">🗑</button>
+          </div>
+        </div>`;
+        });
+      });
+      // Products with unknown sections
+      const otherProds = configData.products.filter(p => !sections.find(s => s.id === p.section));
+      if (otherProds.length) {
+        html += `<div class="section-header-row">📦 Other</div>`;
+        otherProds.forEach(p => {
+          const priceLabel = p.pricingType === 'variable_weight'
+            ? p.pricePerKg + ' EGP/kg (variable weight)'
+            : p.fixedPrice + ' EGP/' + (p.fixedUnit || 'kg');
+          html += `
+        <div class="product-row">
+          <div class="product-row-name">${p.nameEn}<small>${p.nameAr}</small></div>
+          <div class="product-row-price">${priceLabel}</div>
+          <div class="product-row-type">${p.pricingType === 'variable_weight' ? '⚖️ Variable' : '🏷 Fixed'}</div>
+          <label class="toggle">
+            <input type="checkbox" ${p.active ? 'checked' : ''} onchange="toggleProduct('${p.id}', this.checked)">
+            <span class="slider"></span>
+          </label>
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-ghost btn-sm" onclick="openEditProduct('${p.id}')">✏️</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteProduct('${p.id}')">🗑</button>
+          </div>
+        </div>`;
+        });
+      }
+      document.getElementById('productList').innerHTML = html || '<p style="color:var(--tl);text-align:center;padding:20px">No products yet. Click "Add Product" to start.</p>';
+    }
+
+    function toggleProduct(id, active) {
+      const p = configData.products.find(x => x.id === id);
+      if (p) { p.active = active; markDirty(); renderStats(); }
+    }
+
+    function deleteProduct(id) {
+      const p = configData.products.find(x => x.id === id);
+      if (!p) return;
+      if (!confirm('Delete "' + p.nameEn + '"? This cannot be undone.')) return;
+      configData.products = configData.products.filter(x => x.id !== id);
+      markDirty(); renderProductList(); renderStats();
+      showToast('Product deleted. Publish to go live.');
+    }
+
+    // ─── ADD / EDIT PRODUCT MODAL ─────────────────────────────────────────────────
+    function openAddProduct() {
+      editingProductId = null;
+      document.getElementById('modalTitle').textContent = 'Add New Product';
+      document.getElementById('pNameEn').value = '';
+      document.getElementById('pNameAr').value = '';
+      document.getElementById('pSection').value = 'whole_poultry';
+      document.getElementById('pPricingType').value = 'variable_weight';
+      document.getElementById('pPricePerKg').value = '';
+      document.getElementById('pDefaultW').value = '1200';
+      document.getElementById('pMaxW').value = '2500';
+      document.getElementById('pFixedPrice').value = '';
+      document.getElementById('pFixedUnit').value = 'kg';
+      document.getElementById('pFixedUnitAr').value = 'كجم';
+      togglePriceFields();
+      document.getElementById('productModal').classList.add('open');
+      if (document.getElementById('panel-products')) showPanel('products');
+    }
+
+    function openEditProduct(id) {
+      const p = configData.products.find(x => x.id === id);
+      if (!p) return;
+      editingProductId = id;
+      document.getElementById('modalTitle').textContent = 'Edit Product';
+      document.getElementById('pNameEn').value = p.nameEn;
+      document.getElementById('pNameAr').value = p.nameAr;
+      document.getElementById('pSection').value = p.section || 'whole_poultry';
+      document.getElementById('pPricingType').value = p.pricingType;
+      if (p.pricingType === 'variable_weight') {
+        document.getElementById('pPricePerKg').value = p.pricePerKg || '';
+        document.getElementById('pDefaultW').value = p.defaultWeightG || 1200;
+        document.getElementById('pMaxW').value = p.maxWeightG || 2500;
+      } else {
+        document.getElementById('pFixedPrice').value = p.fixedPrice || '';
+        document.getElementById('pFixedUnit').value = p.fixedUnit || 'kg';
+        document.getElementById('pFixedUnitAr').value = p.fixedUnitAr || 'كجم';
+      }
+      togglePriceFields();
+      document.getElementById('productModal').classList.add('open');
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModal').classList.remove('open');
+      editingProductId = null;
+    }
+
+    function togglePriceFields() {
+      const type = document.getElementById('pPricingType').value;
+      document.getElementById('varWeightFields').style.display = type === 'variable_weight' ? 'block' : 'none';
+      document.getElementById('fixedFields').style.display = type === 'fixed' ? 'block' : 'none';
+    }
+
+    function saveProduct() {
+      const nameEn = document.getElementById('pNameEn').value.trim();
+      const nameAr = document.getElementById('pNameAr').value.trim();
+      if (!nameEn || !nameAr) { alert('Both English and Arabic names are required.'); return; }
+      const type = document.getElementById('pPricingType').value;
+      const section = document.getElementById('pSection').value;
+
+      let product = {};
+      if (editingProductId) {
+        product = configData.products.find(x => x.id === editingProductId);
+      } else {
+        product = { id: 'prod_' + Date.now(), active: true };
+        configData.products.push(product);
+      }
+
+      product.nameEn = nameEn;
+      product.nameAr = nameAr;
+      product.section = section;
+      product.pricingType = type;
+
+      if (type === 'variable_weight') {
+        product.pricePerKg = parseFloat(document.getElementById('pPricePerKg').value) || 0;
+        product.defaultWeightG = parseInt(document.getElementById('pDefaultW').value) || 1200;
+        product.minWeightG = 800;
+        product.maxWeightG = parseInt(document.getElementById('pMaxW').value) || 2500;
+        delete product.fixedPrice; delete product.fixedUnit; delete product.fixedUnitAr;
+      } else {
+        product.fixedPrice = parseFloat(document.getElementById('pFixedPrice').value) || 0;
+        product.fixedUnit = document.getElementById('pFixedUnit').value.trim() || 'kg';
+        product.fixedUnitAr = document.getElementById('pFixedUnitAr').value.trim() || 'كجم';
+        delete product.pricePerKg; delete product.defaultWeightG; delete product.minWeightG; delete product.maxWeightG;
+      }
+
+      closeProductModal();
+      markDirty();
+      renderProductList();
+      showToast((editingProductId ? 'Product updated' : 'Product added') + '. Publish to go live!');
+    }
+
+    // ─── BUNDLES ─────────────────────────────────────────────────────────────────
+    function renderBundleList() {
+      if (!configData) return;
+      let html = '';
+      configData.ramadanBundles.forEach(b => {
+        html += `
+      <div class="bundle-admin-card" style="border-color:${b.active ? '#e8ede8' : '#fdd'}">
+        <div class="bundle-admin-header">
+          <div>
+            <div class="bundle-admin-name">${b.badgeEmoji || ''} ${b.nameEn}</div>
+            <div class="bundle-admin-desc">${b.nameAr}</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="bundle-admin-price">${b.bundlePrice} EGP</div>
+            <label class="toggle" title="${b.active ? 'Visible' : 'Hidden'}">
+              <input type="checkbox" ${b.active ? 'checked' : ''} onchange="toggleBundle('${b.id}', this.checked)">
+              <span class="slider"></span>
+            </label>
+            <button class="btn btn-ghost btn-sm" onclick="openEditBundle('${b.id}')">✏️ Edit</button>
+          </div>
+        </div>
+        <div style="font-size:.8rem;color:var(--tl)">${b.descEn}</div>
+        <div style="font-size:.78rem;color:${b.active ? 'var(--green)' : 'var(--red)'};font-weight:700;margin-top:6px">${b.active ? '● Visible on site' : '○ Hidden from site'}</div>
+      </div>`;
+      });
+      document.getElementById('bundleList').innerHTML = html;
+    }
+
+    function toggleBundle(id, active) {
+      const b = configData.ramadanBundles.find(x => x.id === id);
+      if (b) { b.active = active; markDirty(); renderBundleList(); renderStats(); }
+    }
+
+    function openEditBundle(id) {
+      const b = configData.ramadanBundles.find(x => x.id === id);
+      if (!b) return;
+      editingBundleId = id;
+      document.getElementById('bundleModalTitle').textContent = 'Edit Bundle — ' + b.nameEn;
+      document.getElementById('bNameEn').value = b.nameEn;
+      document.getElementById('bNameAr').value = b.nameAr;
+      document.getElementById('bPrice').value = b.bundlePrice;
+      document.getElementById('bOriginalPriceEn').value = b.originalPriceEn || '';
+      document.getElementById('bSaveEn').value = b.saveEn || '';
+      document.getElementById('bSaveAr').value = b.saveAr || '';
+      document.getElementById('bContentsEn').value = (b.contentsEn || []).join('\n');
+      document.getElementById('bContentsAr').value = (b.contentsAr || []).join('\n');
+      document.getElementById('bDescEn').value = b.descEn || '';
+      document.getElementById('bDescAr').value = b.descAr || '';
+      document.getElementById('bundleModal').classList.add('open');
+    }
+
+    function closeBundleModal() {
+      document.getElementById('bundleModal').classList.remove('open');
+      editingBundleId = null;
+    }
+
+    function saveBundle() {
+      if (!editingBundleId) return;
+      const b = configData.ramadanBundles.find(x => x.id === editingBundleId);
+      if (!b) return;
+      b.nameEn = document.getElementById('bNameEn').value.trim();
+      b.nameAr = document.getElementById('bNameAr').value.trim();
+      b.bundlePrice = parseFloat(document.getElementById('bPrice').value) || 0;
+      b.originalPriceEn = document.getElementById('bOriginalPriceEn').value.trim();
+      b.saveEn = document.getElementById('bSaveEn').value.trim();
+      b.saveAr = document.getElementById('bSaveAr').value.trim();
+      b.contentsEn = document.getElementById('bContentsEn').value.split('\n').map(x => x.trim()).filter(Boolean);
+      b.contentsAr = document.getElementById('bContentsAr').value.split('\n').map(x => x.trim()).filter(Boolean);
+      b.descEn = document.getElementById('bDescEn').value.trim();
+      b.descAr = document.getElementById('bDescAr').value.trim();
+      closeBundleModal();
+      markDirty();
+      renderBundleList();
+      showToast('Bundle updated. Publish to go live!');
+    }
+
+    // ─── NAV ─────────────────────────────────────────────────────────────────────
+    function showPanel(id) {
+      document.querySelectorAll('.panel-view').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById('panel-' + id).classList.add('active');
+      const navEl = document.getElementById('nav-' + id);
+      if (navEl) navEl.classList.add('active');
+    }
+
+    // ─── TOAST ───────────────────────────────────────────────────────────────────
+    function showToast(msg, isError = false) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast' + (isError ? ' error' : '') + ' show';
+      setTimeout(() => t.classList.remove('show'), 4000);
+    }
+
+    // ─── DEFAULT CONFIG (fallback if config.json not found) ──────────────────────
+    function getDefaultConfig() {
+      return {
+        meta: { siteName: "Orgánica", whatsapp: "201067776664", deliveryFeeEGP: 75, ramadanSectionVisible: true }, products: [], sections: [
+          { id: "whole_poultry", labelEn: "🐔 Whole Poultry", labelAr: "🐔 دواجن كاملة" },
+          { id: "cuts", labelEn: "🍗 Cuts", labelAr: "🍗 قطعيات" },
+          { id: "processed", labelEn: "⚡ Processed", labelAr: "⚡ مصنعات" },
+          { id: "offal", labelEn: "🫀 Offal", labelAr: "🫀 كبدة" }
+        ], ramadanBundles: []
+      };
+    }
+
+    // Close modals on overlay click
+    document.getElementById('productModal').addEventListener('click', function (e) { if (e.target === this) closeProductModal(); });
+    document.getElementById('bundleModal').addEventListener('click', function (e) { if (e.target === this) closeBundleModal(); });
+    document.getElementById('patInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
+  </script>
+</body>
+
+</html>
