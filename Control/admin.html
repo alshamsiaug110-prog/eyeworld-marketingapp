@@ -719,6 +719,11 @@
       <p>Admin Panel — enter your GitHub PAT to continue</p>
       <input class="login-field" type="text" id="patInput" placeholder="GitHub Personal Access Token" autocomplete="off"
         spellcheck="false">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;cursor:pointer;user-select:none;"
+        onclick="document.getElementById('rememberMe').click()">
+        <input type="checkbox" id="rememberMe" style="width:18px;height:18px;cursor:pointer">
+        <span style="font-size:0.9rem;color:var(--tl)">Remember this token on this device</span>
+      </div>
       <div style="font-size:.75rem;color:var(--tl);margin-bottom:14px;text-align:left;">
         Repo: <strong>alshamsiaug110-prog / eyeworld-marketingapp</strong> &nbsp;·&nbsp; Branch: <strong>main</strong>
       </div>
@@ -987,22 +992,26 @@
     // ─── LOGIN ───────────────────────────────────────────────────────────────────
     async function doLogin() {
       const pat = document.getElementById('patInput').value.trim();
+      const remember = document.getElementById('rememberMe').checked;
       if (!pat) { showLoginError('Please enter your GitHub PAT.'); return; }
       const btn = document.querySelector('.login-btn');
       btn.textContent = 'Connecting…'; btn.disabled = true;
       try {
         const res = await ghGet(CONFIG_PATH, pat);
         if (res.status === 404) {
-          // config.json doesn't exist yet — start fresh
           PAT = pat;
+          if (remember) localStorage.setItem('org_admin_pat', pat);
           configData = getDefaultConfig();
           configSHA = '';
           launchApp();
         } else if (res.ok) {
           const json = await res.json();
           configSHA = json.sha;
-          configData = JSON.parse(atob(json.content.replace(/\n/g, '')));
+          // UTF-8 AWARE DECODING
+          const b64 = json.content.replace(/\n/g, '');
+          configData = JSON.parse(decodeURIComponent(escape(atob(b64))));
           PAT = pat;
+          if (remember) localStorage.setItem('org_admin_pat', pat);
           launchApp();
         } else if (res.status === 401) {
           showLoginError('Invalid token — check your PAT and try again.');
@@ -1015,11 +1024,22 @@
       btn.textContent = '🔐 Connect & Load Data'; btn.disabled = false;
     }
 
+    // Auto-login if token saved
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('org_admin_pat');
+      if (saved) {
+        document.getElementById('patInput').value = saved;
+        document.getElementById('rememberMe').checked = true;
+      }
+    });
+
     function doLogout() {
       PAT = ''; configData = null; configSHA = ''; isDirty = false;
+      localStorage.removeItem('org_admin_pat');
       document.getElementById('adminApp').style.display = 'none';
       document.getElementById('loginScreen').style.display = 'flex';
       document.getElementById('patInput').value = '';
+      document.getElementById('rememberMe').checked = false;
     }
 
     function showLoginError(msg) {
@@ -1045,7 +1065,8 @@
       btn.textContent = '⏳ Publishing…'; btn.disabled = true;
       document.getElementById('nav-publish').querySelector('i').textContent = '⏳';
 
-      const content = btoa(unescape(encodeURIComponent(JSON.stringify(configData, null, 2))));
+      const jsonString = JSON.stringify(configData, null, 2);
+      const content = btoa(unescape(encodeURIComponent(jsonString)));
       const body = { message: 'Admin: update config.json', content, branch: GITHUB_BRANCH };
       if (configSHA) body.sha = configSHA;
 
