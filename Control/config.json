@@ -1,13 +1,13 @@
 {
   "meta": {
-    "siteName": "Orgánica",
-    "siteNameAr": "أورجانيكا",
+    "siteName": "OrgÃÂ¡nica",
+    "siteNameAr": "ÃÂ£ÃÂÃÂ±ÃÂ¬ÃÂ§ÃÂÃÂÃÂÃÂ§",
     "heroTagline": "The Gold Standard of Organic Poultry",
-    "heroTaglineAr": "المعيار الذهبي للطيور الأورجانيك",
+    "heroTaglineAr": "ÃÂ§ÃÂÃÂÃÂ¹ÃÂÃÂ§ÃÂ± ÃÂ§ÃÂÃÂ°ÃÂÃÂ¨ÃÂ ÃÂÃÂÃÂ·ÃÂÃÂÃÂ± ÃÂ§ÃÂÃÂ£ÃÂÃÂ±ÃÂ¬ÃÂ§ÃÂÃÂÃÂ",
     "whatsapp": "201067776664",
     "deliveryFeeEGP": 75,
-    "deliveryHours": "9 AM – 9 PM (All Week days)",
-    "deliveryHoursAr": "٩ صباحاً – ٩ مساءً (طوال أيام الأسبوع)",
+    "deliveryHours": "9 AM Ã¢ÂÂ 9 PM (All Week days)",
+    "deliveryHoursAr": "ÃÂ© ÃÂµÃÂ¨ÃÂ§ÃÂ­ÃÂ§ÃÂ Ã¢ÂÂ ÃÂ© ÃÂÃÂ³ÃÂ§ÃÂ¡ÃÂ (ÃÂ·ÃÂÃÂ§ÃÂ ÃÂ£ÃÂÃÂ§ÃÂ ÃÂ§ÃÂÃÂ£ÃÂ³ÃÂ¨ÃÂÃÂ¹)",
     "ramadanSectionVisible": true
   },
   "products": [
@@ -15,7 +15,7 @@
       "id": "baladi_chicken",
       "section": "whole_poultry",
       "nameEn": "Baladi Chicken",
-      "nameAr": "دجاج بلدي",
+      "nameAr": "ÃÂ¯ÃÂ¬ÃÂ§ÃÂ¬ ÃÂ¨ÃÂÃÂ¯ÃÂ",
       "pricingType": "variable_weight",
       "pricePerKg": 190,
       "defaultWeightG": 1200,
@@ -27,7 +27,7 @@
       "id": "white_chicken",
       "section": "whole_poultry",
       "nameEn": "White Chicken",
-      "nameAr": "دجاج أبيض",
+      "nameAr": "ÃÂ¯ÃÂ¬ÃÂ§ÃÂ¬ ÃÂ£ÃÂ¨ÃÂÃÂ¶",
       "pricingType": "variable_weight",
       "pricePerKg": 140,
       "defaultWeightG": 1200,
@@ -39,18 +39,18 @@
       "id": "pigeons",
       "section": "whole_poultry",
       "nameEn": "Pigeons",
-      "nameAr": "حمام",
+      "nameAr": "ÃÂ­ÃÂÃÂ§ÃÂ",
       "pricingType": "fixed",
       "fixedPrice": 275,
       "fixedUnit": "pair",
-      "fixedUnitAr": "زوج",
+      "fixedUnitAr": "ÃÂ²ÃÂÃÂ¬",
       "active": true
     },
     {
       "id": "duck",
       "section": "whole_poultry",
       "nameEn": "Duck",
-      "nameAr": "بط",
+      "nameAr": "ÃÂ¨ÃÂ·",
       "pricingType": "variable_weight",
       "pricePerKg": 210,
       "defaultWeightG": 1500,
@@ -62,218 +62,242 @@
       "id": "drumsticks",
       "section": "cuts",
       "nameEn": "Drumsticks (bone-in)",
-      "nameAr": "دبوس بالعظم",
+      "nameAr": "ÃÂ¯ÃÂ¨ÃÂÃÂ³ ÃÂ¨ÃÂ§ÃÂÃÂ¹ÃÂ¸ÃÂ",
       "pricingType": "fixed",
       "fixedPrice": 180,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
     },
     {
       "id": "thighs_bone",
       "section": "cuts",
       "nameEn": "Thighs (bone-in)",
-      "nameAr": "أوراك بالعظم",
+      "nameAr": "ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ ÃÂ¨ÃÂ§ÃÂÃÂ¹ÃÂ¸ÃÂ",
       "pricingType": "fixed",
       "fixedPrice": 160,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
     },
     {
       "id": "thighs_boneless",
       "section": "cuts",
       "nameEn": "Thighs (boneless)",
-      "nameAr": "أوراك مخلية",
+      "nameAr": "ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ ÃÂÃÂ®ÃÂÃÂÃÂ©",
       "pricingType": "fixed",
       "fixedPrice": 260,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
     },
     {
       "id": "wings",
       "section": "cuts",
       "nameEn": "Wings",
-      "nameAr": "أجنحة",
+      "nameAr": "ÃÂ£ÃÂ¬ÃÂÃÂ­ÃÂ©",
       "pricingType": "fixed",
       "fixedPrice": 80,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
     },
     {
       "id": "pane",
       "section": "processed",
-      "nameEn": "Pané Fillets (Thin/Thick Cut) Upon Request",
-      "nameAr": "بانية (رفيع / سميك) حسب الطلب",
+      "nameEn": "PanÃÂ© Fillets (Thin/Thick Cut) Upon Request",
+      "nameAr": "ÃÂ¨ÃÂ§ÃÂÃÂÃÂ© (ÃÂ±ÃÂÃÂÃÂ¹ / ÃÂ³ÃÂÃÂÃÂ) ÃÂ­ÃÂ³ÃÂ¨ ÃÂ§ÃÂÃÂ·ÃÂÃÂ¨",
       "pricingType": "fixed",
       "fixedPrice": 275,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
     },
     {
       "id": "shish_tawook",
       "section": "processed",
       "nameEn": "Shish Tawook (Thighs/Breasts) Upon Request",
-      "nameAr": "شيش طاووق (أوراك - صدور) حسب الطلب",
+      "nameAr": "ÃÂ´ÃÂÃÂ´ ÃÂ·ÃÂ§ÃÂÃÂÃÂ (ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ - ÃÂµÃÂ¯ÃÂÃÂ±) ÃÂ­ÃÂ³ÃÂ¨ ÃÂ§ÃÂÃÂ·ÃÂÃÂ¨",
       "pricingType": "fixed",
       "fixedPrice": 275,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
     },
     {
       "id": "breasts",
       "section": "processed",
       "nameEn": "Chicken Breasts",
-      "nameAr": "صدور",
+      "nameAr": "ÃÂµÃÂ¯ÃÂÃÂ±",
       "pricingType": "fixed",
       "fixedPrice": 275,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
     },
     {
       "id": "minced",
       "section": "processed",
       "nameEn": "Minced",
-      "nameAr": "مفروم",
+      "nameAr": "ÃÂÃÂÃÂ±ÃÂÃÂ",
       "pricingType": "fixed",
       "fixedPrice": 275,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
     },
     {
       "id": "shawarma",
       "section": "processed",
       "nameEn": "Shawarma",
-      "nameAr": "شاورما",
+      "nameAr": "ÃÂ´ÃÂ§ÃÂÃÂ±ÃÂÃÂ§",
       "pricingType": "fixed",
       "fixedPrice": 275,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
     },
     {
       "id": "liver",
       "section": "offal",
       "nameEn": "Pure Liver",
-      "nameAr": "كبدة صافي",
+      "nameAr": "ÃÂÃÂ¨ÃÂ¯ÃÂ© ÃÂµÃÂ§ÃÂÃÂ",
       "pricingType": "fixed",
       "fixedPrice": 190,
       "fixedUnit": "kg",
-      "fixedUnitAr": "كجم",
+      "fixedUnitAr": "ÃÂÃÂ¬ÃÂ",
       "active": true
+    },
+    {
+      "id": "prod_1772659831285",
+      "active": true,
+      "nameEn": "Rabbit",
+      "nameAr": "Arnab",
+      "section": "whole_poultry",
+      "pricingType": "variable_weight",
+      "pricePerKg": 230,
+      "defaultWeightG": 1200,
+      "minWeightG": 800,
+      "maxWeightG": 2500
+    },
+    {
+      "id": "prod_1772659908100",
+      "active": true,
+      "nameEn": "Temsa7",
+      "nameAr": "temsa7",
+      "section": "whole_poultry",
+      "pricingType": "variable_weight",
+      "pricePerKg": 330,
+      "defaultWeightG": 1200,
+      "minWeightG": 800,
+      "maxWeightG": 2500
     }
   ],
   "sections": [
     {
       "id": "whole_poultry",
-      "labelEn": "🐔 Whole Poultry",
-      "labelAr": "🐔 دواجن كاملة"
+      "labelEn": "Ã°ÂÂÂ Whole Poultry",
+      "labelAr": "Ã°ÂÂÂ ÃÂ¯ÃÂÃÂ§ÃÂ¬ÃÂ ÃÂÃÂ§ÃÂÃÂÃÂ©"
     },
     {
       "id": "cuts",
-      "labelEn": "🍗 Cuts",
-      "labelAr": "🍗 قطعيات"
+      "labelEn": "Ã°ÂÂÂ Cuts",
+      "labelAr": "Ã°ÂÂÂ ÃÂÃÂ·ÃÂ¹ÃÂÃÂ§ÃÂª"
     },
     {
       "id": "processed",
-      "labelEn": "⚡ Processed",
-      "labelAr": "⚡ مصنعات"
+      "labelEn": "Ã¢ÂÂ¡ Processed",
+      "labelAr": "Ã¢ÂÂ¡ ÃÂÃÂµÃÂÃÂ¹ÃÂ§ÃÂª"
     },
     {
       "id": "offal",
-      "labelEn": "🫀 Offal",
-      "labelAr": "🫀 كبدة"
+      "labelEn": "Ã°ÂÂ«Â Offal",
+      "labelAr": "Ã°ÂÂ«Â ÃÂÃÂ¨ÃÂ¯ÃÂ©"
     }
   ],
   "ramadanBundles": [
     {
       "id": "small",
       "nameEn": "Small Family Bundle (4 Pers.)",
-      "nameAr": "باقة العيلة الصغيرة (٤ أفراد)",
+      "nameAr": "ÃÂ¨ÃÂ§ÃÂÃÂ© ÃÂ§ÃÂÃÂ¹ÃÂÃÂÃÂ© ÃÂ§ÃÂÃÂµÃÂºÃÂÃÂ±ÃÂ© (ÃÂ¤ ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ¯)",
       "badgeEn": "Small Family",
-      "badgeAr": "العيلة الصغيرة",
-      "badgeEmoji": "🌿",
-      "personsEn": "👨‍👩‍👧‍👦 Ideal for a cozy 4-person Iftar",
-      "personsAr": "👨‍👩‍👧‍👦 مثالي لإفطار عيلة ٤ أفراد",
+      "badgeAr": "ÃÂ§ÃÂÃÂ¹ÃÂÃÂÃÂ© ÃÂ§ÃÂÃÂµÃÂºÃÂÃÂ±ÃÂ©",
+      "badgeEmoji": "Ã°ÂÂÂ¿",
+      "personsEn": "Ã°ÂÂÂ¨Ã¢ÂÂÃ°ÂÂÂ©Ã¢ÂÂÃ°ÂÂÂ§Ã¢ÂÂÃ°ÂÂÂ¦ Ideal for a cozy 4-person Iftar",
+      "personsAr": "Ã°ÂÂÂ¨Ã¢ÂÂÃ°ÂÂÂ©Ã¢ÂÂÃ°ÂÂÂ§Ã¢ÂÂÃ°ÂÂÂ¦ ÃÂÃÂ«ÃÂ§ÃÂÃÂ ÃÂÃÂ¥ÃÂÃÂ·ÃÂ§ÃÂ± ÃÂ¹ÃÂÃÂÃÂ© ÃÂ¤ ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ¯",
       "contentsEn": [
-        "1 Baladi Chicken (whole) — 190 EGP @ 1.5 kg",
-        "1 kg Chicken Thighs (bone-in) — 160 EGP"
+        "1 Baladi Chicken (whole) Ã¢ÂÂ 190 EGP @ 1.5 kg",
+        "1 kg Chicken Thighs (bone-in) Ã¢ÂÂ 160 EGP"
       ],
       "contentsAr": [
-        "١ دجاجة بلدي كاملة — ٢٨٥ ج @ ١.٥ كجم",
-        "١ كجم أوراك بالعظم — ١٦٠ ج"
+        "ÃÂ¡ ÃÂ¯ÃÂ¬ÃÂ§ÃÂ¬ÃÂ© ÃÂ¨ÃÂÃÂ¯ÃÂ ÃÂÃÂ§ÃÂÃÂÃÂ© Ã¢ÂÂ ÃÂ¢ÃÂ¨ÃÂ¥ ÃÂ¬ @ ÃÂ¡.ÃÂ¥ ÃÂÃÂ¬ÃÂ",
+        "ÃÂ¡ ÃÂÃÂ¬ÃÂ ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ ÃÂ¨ÃÂ§ÃÂÃÂ¹ÃÂ¸ÃÂ Ã¢ÂÂ ÃÂ¡ÃÂ¦ÃÂ  ÃÂ¬"
       ],
       "originalPriceEn": "445",
-      "originalPriceAr": "٤٤٥",
+      "originalPriceAr": "ÃÂ¤ÃÂ¤ÃÂ¥",
       "bundlePrice": 395,
-      "saveEn": "Save 50 EGP · ~11%",
-      "saveAr": "وفّر ٥٠ ج · ١١٪",
+      "saveEn": "Save 50 EGP ÃÂ· ~11%",
+      "saveAr": "ÃÂÃÂÃÂÃÂ± ÃÂ¥ÃÂ  ÃÂ¬ ÃÂ· ÃÂ¡ÃÂ¡ÃÂª",
       "descEn": "1 Baladi Chicken (~1.5kg) + 1kg Thighs (bone-in)",
-      "descAr": "دجاجة بلدي (~١.٥ كيلو) + كيلو أوراك بالعظم",
+      "descAr": "ÃÂ¯ÃÂ¬ÃÂ§ÃÂ¬ÃÂ© ÃÂ¨ÃÂÃÂ¯ÃÂ (~ÃÂ¡.ÃÂ¥ ÃÂÃÂÃÂÃÂ) + ÃÂÃÂÃÂÃÂ ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ ÃÂ¨ÃÂ§ÃÂÃÂ¹ÃÂ¸ÃÂ",
       "active": true
     },
     {
       "id": "gathering",
       "nameEn": "The Gathering Bundle (6 Pers.)",
-      "nameAr": "باقة التجمّع (٦ أفراد)",
+      "nameAr": "ÃÂ¨ÃÂ§ÃÂÃÂ© ÃÂ§ÃÂÃÂªÃÂ¬ÃÂÃÂÃÂ¹ (ÃÂ¦ ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ¯)",
       "badgeEn": "The Gathering",
-      "badgeAr": "التجمّع",
-      "badgeEmoji": "✨",
-      "personsEn": "👨‍👩‍👧‍👦👶 The classic Ramadan spread for 6 persons",
-      "personsAr": "👨‍👩‍👧‍👦👶 مائدة رمضان الكلاسيكية لـ ٦ أفراد",
+      "badgeAr": "ÃÂ§ÃÂÃÂªÃÂ¬ÃÂÃÂÃÂ¹",
+      "badgeEmoji": "Ã¢ÂÂ¨",
+      "personsEn": "Ã°ÂÂÂ¨Ã¢ÂÂÃ°ÂÂÂ©Ã¢ÂÂÃ°ÂÂÂ§Ã¢ÂÂÃ°ÂÂÂ¦Ã°ÂÂÂ¶ The classic Ramadan spread for 6 persons",
+      "personsAr": "Ã°ÂÂÂ¨Ã¢ÂÂÃ°ÂÂÂ©Ã¢ÂÂÃ°ÂÂÂ§Ã¢ÂÂÃ°ÂÂÂ¦Ã°ÂÂÂ¶ ÃÂÃÂ§ÃÂ¦ÃÂ¯ÃÂ© ÃÂ±ÃÂÃÂ¶ÃÂ§ÃÂ ÃÂ§ÃÂÃÂÃÂÃÂ§ÃÂ³ÃÂÃÂÃÂÃÂ© ÃÂÃÂ ÃÂ¦ ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ¯",
       "contentsEn": [
-        "1 Whole Duck (~3 kg @ 210/kg) — 630 EGP",
-        "1 kg All Pané Cuts — 275 EGP",
-        "1 Baladi Chicken (whole) — 190 EGP @ 1.5 kg"
+        "1 Whole Duck (~3 kg @ 210/kg) Ã¢ÂÂ 630 EGP",
+        "1 kg All PanÃÂ© Cuts Ã¢ÂÂ 275 EGP",
+        "1 Baladi Chicken (whole) Ã¢ÂÂ 190 EGP @ 1.5 kg"
       ],
       "contentsAr": [
-        "١ بطة كاملة (~٣ كجم) — ٦٣٠ ج",
-        "١ كجم قطعيات بانيه — ٢٧٥ ج",
-        "١ دجاجة بلدي كاملة — ٢٨٥ ج @ ١.٥ كجم"
+        "ÃÂ¡ ÃÂ¨ÃÂ·ÃÂ© ÃÂÃÂ§ÃÂÃÂÃÂ© (~ÃÂ£ ÃÂÃÂ¬ÃÂ) Ã¢ÂÂ ÃÂ¦ÃÂ£ÃÂ  ÃÂ¬",
+        "ÃÂ¡ ÃÂÃÂ¬ÃÂ ÃÂÃÂ·ÃÂ¹ÃÂÃÂ§ÃÂª ÃÂ¨ÃÂ§ÃÂÃÂÃÂ Ã¢ÂÂ ÃÂ¢ÃÂ§ÃÂ¥ ÃÂ¬",
+        "ÃÂ¡ ÃÂ¯ÃÂ¬ÃÂ§ÃÂ¬ÃÂ© ÃÂ¨ÃÂÃÂ¯ÃÂ ÃÂÃÂ§ÃÂÃÂÃÂ© Ã¢ÂÂ ÃÂ¢ÃÂ¨ÃÂ¥ ÃÂ¬ @ ÃÂ¡.ÃÂ¥ ÃÂÃÂ¬ÃÂ"
       ],
       "originalPriceEn": "1,190",
-      "originalPriceAr": "١٬١٩٠",
+      "originalPriceAr": "ÃÂ¡ÃÂ¬ÃÂ¡ÃÂ©ÃÂ ",
       "bundlePrice": 1090,
-      "saveEn": "Save 100 EGP · ~8%",
-      "saveAr": "وفّر ١٠٠ ج · ٨٪",
-      "descEn": "1 Whole Duck (~3kg) + 1kg Pané Cuts + 1 Baladi Chicken",
-      "descAr": "بطة كاملة (~٣ كيلو) + كيلو قطعيات بانيه + دجاجة بلدي",
+      "saveEn": "Save 100 EGP ÃÂ· ~8%",
+      "saveAr": "ÃÂÃÂÃÂÃÂ± ÃÂ¡ÃÂ ÃÂ  ÃÂ¬ ÃÂ· ÃÂ¨ÃÂª",
+      "descEn": "1 Whole Duck (~3kg) + 1kg PanÃÂ© Cuts + 1 Baladi Chicken",
+      "descAr": "ÃÂ¨ÃÂ·ÃÂ© ÃÂÃÂ§ÃÂÃÂÃÂ© (~ÃÂ£ ÃÂÃÂÃÂÃÂ) + ÃÂÃÂÃÂÃÂ ÃÂÃÂ·ÃÂ¹ÃÂÃÂ§ÃÂª ÃÂ¨ÃÂ§ÃÂÃÂÃÂ + ÃÂ¯ÃÂ¬ÃÂ§ÃÂ¬ÃÂ© ÃÂ¨ÃÂÃÂ¯ÃÂ",
       "active": true
     },
     {
       "id": "feast",
       "nameEn": "Big Feast Bundle (8 Pers.)",
-      "nameAr": "باقة الوليمة الكبيرة (٨ أفراد)",
+      "nameAr": "ÃÂ¨ÃÂ§ÃÂÃÂ© ÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂ© ÃÂ§ÃÂÃÂÃÂ¨ÃÂÃÂ±ÃÂ© (ÃÂ¨ ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ¯)",
       "badgeEn": "Big Feast",
-      "badgeAr": "الوليمة الكبيرة",
-      "badgeEmoji": "👑",
-      "personsEn": "🎉 The ultimate First-Day-of-Ramadan luxury — 8 persons",
-      "personsAr": "🎉 الرفاهية المطلقة ليوم رمضان الأول — ٨ أفراد",
+      "badgeAr": "ÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂ© ÃÂ§ÃÂÃÂÃÂ¨ÃÂÃÂ±ÃÂ©",
+      "badgeEmoji": "Ã°ÂÂÂ",
+      "personsEn": "Ã°ÂÂÂ The ultimate First-Day-of-Ramadan luxury Ã¢ÂÂ 8 persons",
+      "personsAr": "Ã°ÂÂÂ ÃÂ§ÃÂÃÂ±ÃÂÃÂ§ÃÂÃÂÃÂ© ÃÂ§ÃÂÃÂÃÂ·ÃÂÃÂÃÂ© ÃÂÃÂÃÂÃÂ ÃÂ±ÃÂÃÂ¶ÃÂ§ÃÂ ÃÂ§ÃÂÃÂ£ÃÂÃÂ Ã¢ÂÂ ÃÂ¨ ÃÂ£ÃÂÃÂ±ÃÂ§ÃÂ¯",
       "contentsEn": [
-        "1 Whole Duck (~3 kg @ 210/kg) — 630 EGP",
-        "2 Pairs of Pigeons (2 × 275) — 550 EGP",
-        "1 Baladi Chicken (whole) — 190 EGP @ 1.5 kg",
-        "1 kg All Pané Cuts — 275 EGP"
+        "1 Whole Duck (~3 kg @ 210/kg) Ã¢ÂÂ 630 EGP",
+        "2 Pairs of Pigeons (2 ÃÂ 275) Ã¢ÂÂ 550 EGP",
+        "1 Baladi Chicken (whole) Ã¢ÂÂ 190 EGP @ 1.5 kg",
+        "1 kg All PanÃÂ© Cuts Ã¢ÂÂ 275 EGP"
       ],
       "contentsAr": [
-        "١ بطة كاملة (~٣ كجم) — ٦٣٠ ج",
-        "٢ جوز حمام (٢ × ٢٧٥) — ٥٥٠ ج",
-        "١ دجاجة بلدي كاملة — ٢٨٥ ج @ ١.٥ كجم",
-        "١ كجم قطعيات بانيه — ٢٧٥ ج"
+        "ÃÂ¡ ÃÂ¨ÃÂ·ÃÂ© ÃÂÃÂ§ÃÂÃÂÃÂ© (~ÃÂ£ ÃÂÃÂ¬ÃÂ) Ã¢ÂÂ ÃÂ¦ÃÂ£ÃÂ  ÃÂ¬",
+        "ÃÂ¢ ÃÂ¬ÃÂÃÂ² ÃÂ­ÃÂÃÂ§ÃÂ (ÃÂ¢ ÃÂ ÃÂ¢ÃÂ§ÃÂ¥) Ã¢ÂÂ ÃÂ¥ÃÂ¥ÃÂ  ÃÂ¬",
+        "ÃÂ¡ ÃÂ¯ÃÂ¬ÃÂ§ÃÂ¬ÃÂ© ÃÂ¨ÃÂÃÂ¯ÃÂ ÃÂÃÂ§ÃÂÃÂÃÂ© Ã¢ÂÂ ÃÂ¢ÃÂ¨ÃÂ¥ ÃÂ¬ @ ÃÂ¡.ÃÂ¥ ÃÂÃÂ¬ÃÂ",
+        "ÃÂ¡ ÃÂÃÂ¬ÃÂ ÃÂÃÂ·ÃÂ¹ÃÂÃÂ§ÃÂª ÃÂ¨ÃÂ§ÃÂÃÂÃÂ Ã¢ÂÂ ÃÂ¢ÃÂ§ÃÂ¥ ÃÂ¬"
       ],
       "originalPriceEn": "1,740",
-      "originalPriceAr": "١٬٧٤٠",
+      "originalPriceAr": "ÃÂ¡ÃÂ¬ÃÂ§ÃÂ¤ÃÂ ",
       "bundlePrice": 1565,
-      "saveEn": "Save 175 EGP · ~10%",
-      "saveAr": "وفّر ١٧٥ ج · ١٠٪",
-      "descEn": "1 Whole Duck (~3kg) + 2 Pairs Pigeons + 1 Baladi Chicken + 1kg Pané Cuts",
-      "descAr": "بطة كاملة (~٣ كيلو) + جوزين حمام + دجاجة بلدي + كيلو قطعيات بانيه",
+      "saveEn": "Save 175 EGP ÃÂ· ~10%",
+      "saveAr": "ÃÂÃÂÃÂÃÂ± ÃÂ¡ÃÂ§ÃÂ¥ ÃÂ¬ ÃÂ· ÃÂ¡ÃÂ ÃÂª",
+      "descEn": "1 Whole Duck (~3kg) + 2 Pairs Pigeons + 1 Baladi Chicken + 1kg PanÃÂ© Cuts",
+      "descAr": "ÃÂ¨ÃÂ·ÃÂ© ÃÂÃÂ§ÃÂÃÂÃÂ© (~ÃÂ£ ÃÂÃÂÃÂÃÂ) + ÃÂ¬ÃÂÃÂ²ÃÂÃÂ ÃÂ­ÃÂÃÂ§ÃÂ + ÃÂ¯ÃÂ¬ÃÂ§ÃÂ¬ÃÂ© ÃÂ¨ÃÂÃÂ¯ÃÂ + ÃÂÃÂÃÂÃÂ ÃÂÃÂ·ÃÂ¹ÃÂÃÂ§ÃÂª ÃÂ¨ÃÂ§ÃÂÃÂÃÂ",
       "active": true
     }
   ]
